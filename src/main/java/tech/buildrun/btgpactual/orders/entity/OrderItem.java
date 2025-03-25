@@ -39,7 +39,12 @@ public class OrderItem {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public OrderItem(String product, Integer quantity, BigDecimal price) {
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
  
-    
 
 }

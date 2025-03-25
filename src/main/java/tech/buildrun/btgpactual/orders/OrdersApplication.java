@@ -1,13 +1,13 @@
-package tech.buildrun.btgpactual.orderms;
+package tech.buildrun.btgpactual.orders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OrdermsApplication {
+public class OrdersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrdermsApplication.class, args);
+		SpringApplication.run(OrdersApplication.class, args);
 	}
 
 }

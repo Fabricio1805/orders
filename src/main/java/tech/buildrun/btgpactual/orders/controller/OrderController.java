@@ -1,5 +1,8 @@
 package tech.buildrun.btgpactual.orders.controller;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +31,10 @@ public class OrderController {
             @PathVariable() Long customerId,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer pageSize) {
-                System.out.println(customerId);
+       
         Page<OrderResponseDTO> pageResponse = orderService.findAllOrdersByCustomerId(customerId, PageRequest.of(page, pageSize));
+        BigDecimal totalOnOrders = orderService.findTotalOnOrdersByCustomerId(customerId);
 
-        return ResponseEntity.ok().body(new ApiResponse<>(pageResponse.getContent(), PaginationResponse.fromPage(pageResponse)));
+        return ResponseEntity.ok().body(new ApiResponse<>(Map.of("totalOnOrders", totalOnOrders),pageResponse.getContent(), PaginationResponse.fromPage(pageResponse)));
     }
 }

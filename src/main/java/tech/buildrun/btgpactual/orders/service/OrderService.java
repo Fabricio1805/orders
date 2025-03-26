@@ -3,8 +3,11 @@ package tech.buildrun.btgpactual.orders.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import tech.buildrun.btgpactual.orders.controller.dto.OrderResponseDTO;
 import tech.buildrun.btgpactual.orders.entity.Order;
 import tech.buildrun.btgpactual.orders.entity.OrderItem;
 import tech.buildrun.btgpactual.orders.listener.dto.OrderCreatedEventDTO;
@@ -28,6 +31,14 @@ public class OrderService {
         order.setItems(getOrderItems(eventDTO));
 
         orderRepository.save(order);
+
+    }
+
+
+    public Page<OrderResponseDTO> findAllOrdersByCustomerId(final Long customerId, PageRequest pageRequest) {
+        Page<Order> orders = orderRepository.findAllByCustomerId(customerId,pageRequest);
+
+        return orders.map(OrderResponseDTO::fromEntity);
 
     }
 

@@ -3,6 +3,9 @@ package tech.buildrun.btgpactual.orders.factory;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
 import tech.buildrun.btgpactual.orders.entity.Order;
 import tech.buildrun.btgpactual.orders.entity.OrderItem;
 
@@ -19,4 +22,9 @@ public class OrderEntityFactory {
 
         return order;
     }   
+
+     public static Page<Order> buildWithPage() {
+    
+        return new PageImpl<>(List.of(build()));
+    }
 }
